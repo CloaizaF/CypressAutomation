@@ -10,12 +10,13 @@ describe('My First Test Suite', () => {
       // Selenium get hits url in browser, Cypress get acts lik findElement of Selenium
       cy.get('.product:visible').should('have.length', 4)
       // Parent child chaining
-      cy.get('.products').find('.product').should('have.length', 4)
+      cy.get('.products').as('productsLocator')
+      cy.get('@productsLocator').find('.product').should('have.length', 4)
 
-      cy.get('.products').find('.product').eq(2).contains("ADD TO CART").click()
+      cy.get('@productsLocator').find('.product').eq(2).contains("ADD TO CART").click()
       cy.get(':nth-child(3) > .product-action > button').click() //- not recommended
 
-      cy.get('.products').find('.product').each(($el) => {
+      cy.get('@productsLocator').find('.product').each(($el) => {
         const productText = $el.find('h4.product-name').text()
         if(productText.includes("Cashews")) {
           cy.wrap($el).find('button').click()
