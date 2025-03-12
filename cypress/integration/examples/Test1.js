@@ -35,5 +35,6 @@ describe('My First Test Suite', () => {
         cy.log(logoElement.text()) // To print in logs
       })
 
+      
     })
 })
