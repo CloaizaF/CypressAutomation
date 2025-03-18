@@ -44,4 +44,12 @@ describe('Verify elements in webpage', () => {
       cy.get('#displayed-text').should('be.visible')
       
     })
+
+    it('Verify radio button', () => {
+
+      cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+
+      cy.get('input[value="radio2"]').check().should('be.checked')
+      
+    })
 })
