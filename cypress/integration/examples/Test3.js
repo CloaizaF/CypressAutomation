@@ -22,6 +22,14 @@ describe('Verify elements in webpage', () => {
     it('Verify dynamic dropdown', () => {
 
       cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+
+      cy.get('#autocomplete').type('ind')
+
+      cy.get('.ui-menu-item div').each(($el) => {
+        if($el.text() === "India") {
+          cy.wrap($el).click()
+        }
+      })
       
     })
 })
