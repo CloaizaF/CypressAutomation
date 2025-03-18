@@ -1,6 +1,5 @@
 /// <reference types="Cypress" />
 
-// cypress - Spec
 describe('My Second Test Suite', () => {
     it('Search and Buy a Product', () => {
       cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/")
