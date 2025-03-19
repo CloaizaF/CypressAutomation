@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 
-describe('Handling Child Windows', () => {
-    it('Should handle child window', () => {
+describe('Handling Child Tabs', () => {
+    it('Should handle child tab', () => {
         cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
 
         cy.get('#opentab').invoke('removeAttr', 'target').click()
