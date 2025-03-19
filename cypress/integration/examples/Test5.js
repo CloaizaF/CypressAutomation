@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 describe('Verify Table', () => {
     it('Verify course has price', () => {

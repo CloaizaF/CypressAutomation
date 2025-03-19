@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 // cypress - Spec
 describe('My First Test Suite', () => {

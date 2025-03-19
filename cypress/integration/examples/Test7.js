@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 describe('Handling Child Tabs', () => {
     it('Should handle child tab', () => {

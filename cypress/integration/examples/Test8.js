@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 describe('Handling Child Windows', () => {
     it('Should handle child window', () => {

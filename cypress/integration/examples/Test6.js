@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 describe('Verify Mouse Hover', () => {
     it('Verify mouse hover', () => {

@@ -1,4 +1,4 @@
-/// <reference types="Cypress" />
+/// <reference types="cypress" />
 
 describe('Verify different alerts in cypress', () => {
     it('Verify autoaccepted alerts', () => {
