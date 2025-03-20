@@ -1,5 +1,5 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor"
-import HomePage from '../../support/pageObjects/HomePage'
+import HomePage from '../../../support/pageObjects/HomePage'
 
 let testData
 const homePage = new HomePage()
@@ -9,7 +9,9 @@ let confirmationPage
 
 before(() => {
     cy.then(() => {
-        testData = Cypress.env('testData')  // Recuperamos testData antes de los tests
+        cy.fixture('example.json').then((data) => {
+            testData = data
+        })
     })
 })
 
@@ -18,7 +20,13 @@ Given("I am on Ecommerce page", () => {
 })
 
 When("I login to the application", () => {
-    productPage = homePage.login(testData.username, testData.password)
+    cy.then(() => { // Nos aseguramos de que testData está definido antes de usarlo
+        productPage = homePage.login(testData.username, testData.password)
+    })
+})
+
+When("I login to the application portal", (dataTable) => {
+    productPage = homePage.login(dataTable.rawTable[1][0], dataTable.rawTable[1][1])
 })
 
 Then("verify the page is loaded", () => {
