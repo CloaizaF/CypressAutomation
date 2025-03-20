@@ -1,14 +1,24 @@
 /// <reference types="cypress" />
 
 describe('E2E Ecommerce Test', () => {
-    it('Sumbit Order', () => {
 
-        const productName = "Nokia Edge" 
+    let testData
+
+    before(() => {
+        // It runs only once before all tests in this block
+        cy.fixture('example.json').then((data) => {
+            testData=data
+        })
+    })
+
+    it('Sumbit Order', () => {
+        Cypress.config('defaultCommandTimeout', 15000)
+
         cy.visit("https://rahulshettyacademy.com/loginpagePractise/#")
         
         // Login to the page
-        cy.get('#username').type("rahulshettyacademy")
-        cy.get('#password').type("learning")
+        cy.get('#username').type(testData.username)
+        cy.get('#password').type(testData.password)
         cy.contains("Sign In").click()
 
         // Assert the page is loaded correctly
@@ -16,7 +26,7 @@ describe('E2E Ecommerce Test', () => {
         cy.get('app-card').should('have.length', 4)
 
         // Add products to the cart
-        cy.get('app-card').filter(`:contains("${productName}")`).then(($el) => {
+        cy.get('app-card').filter(`:contains("${testData.productName}")`).then(($el) => {
             cy.wrap($el).contains('button', 'Add').click()
         })
         cy.get('app-card').eq(0).contains('button', 'Add').click()
@@ -38,7 +48,7 @@ describe('E2E Ecommerce Test', () => {
         // Do the checkout
         cy.contains('button', 'Checkout').click()
         cy.get('#country').type('India')
-        cy.wait(5000)
+        cy.wait(3000)
         cy.get('.suggestions ul li a').click()
         cy.get('.btn-success').click()
         cy.get('.alert-success').should('contain', 'Success')
