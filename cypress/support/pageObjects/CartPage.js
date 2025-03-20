@@ -4,7 +4,7 @@ class CartPage {
 
     calculateTotalPrice() {
         let price = 0
-        cy.get('tr td:nth-child(4) strong').each(($el) => {
+        return cy.get('tr td:nth-child(4) strong').each(($el) => {
             const amount = Number($el.text().split(" ")[1].trim())
             price = price + amount
         }).then(() => {

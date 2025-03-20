@@ -1,3 +1,5 @@
+import CartPage from '../../support/pageObjects/CartPage'
+
 class ProductPage {
 
     getPageLogo() {

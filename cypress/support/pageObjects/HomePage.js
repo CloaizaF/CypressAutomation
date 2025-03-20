@@ -1,3 +1,5 @@
+import ProductPage from '../../support/pageObjects/ProductPage'
+
 class HomePage {
 
     goTo(url) {
@@ -8,7 +10,6 @@ class HomePage {
         cy.get('#username').type(username)
         cy.get('#password').type(password)
         cy.contains("Sign In").click()
-
         return new ProductPage()
     }
 }

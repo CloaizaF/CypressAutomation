@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import HomePage from '../../support/pageObjects/HomePage'
 
 describe('E2E Ecommerce Test', () => {
 
@@ -25,17 +26,17 @@ describe('E2E Ecommerce Test', () => {
         productPage.getCardCount().should('have.length', 4)
 
         // Add products to the cart
-        productPage.selecProduct(testData.productName)
+        productPage.selectProduct(testData.productName)
         productPage.selectFirstProduct()
 
         // Go to checkout
-        const cartPage = productPage.goToCheckout()
+        const cartPage = productPage.goToCart()
 
         // Assert price is correctly calculated
-        cartPage.calculateTotalPrice().then(() => {
+        cartPage.calculateTotalPrice().then(($price) => {
             // This should be added in a promise as the code inside each 
             // is pure JS therefore asynchronous 
-            expect(price).to.be.lessThan(200000)
+            expect($price).to.be.lessThan(200000)
         })
 
         // Do the checkout
