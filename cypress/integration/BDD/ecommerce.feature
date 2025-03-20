@@ -1,5 +1,6 @@
 Feature: End to End Ecommerce Validation
 
+    @Regression
     Scenario: Ecommerce products delivery
         Given I am on Ecommerce page
         When I login to the application
@@ -9,7 +10,7 @@ Feature: End to End Ecommerce Validation
         When I select the country and submit
         Then verify the thank you message is displayed
 
-
+    @Smoke
     Scenario: Ecommerce products delivery with user input
         Given I am on Ecommerce page
         When I login to the application portal

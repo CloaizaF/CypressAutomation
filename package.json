@@ -13,10 +13,17 @@
   "devDependencies": {
     "cypress": "^14.1.0",
     "cypress-iframe": "^1.0.1",
-    "cypress-mochawesome-reporter": "^3.8.2"
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "multiple-cucumber-html-reporter": "^3.9.2"
   },
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
     "@cypress/browserify-preprocessor": "latest"
+  },
+  "cypress-cucumber-preprocessor": {
+    "json": {
+      "enabled": true,
+      "output": "cypress/cucumberReports/results.json"
+    }
   }
 }

@@ -5,7 +5,7 @@ const { defineConfig } = require("cypress");
 
 
 async function setupNodeEvents(on, config){
-  require('cypress-mochawesome-reporter/plugin')(on);
+  
   await addCucumberPreprocessorPlugin(on, config);
 
   on(
@@ -32,8 +32,11 @@ module.exports = defineConfig({
   },
 
   e2e: {
-    setupNodeEvents,
+    // setupNodeEvents(on, config) {
+    //   require('cypress-mochawesome-reporter/plugin')(on); -> reporter for js files not cucumber
+    // },
     //specPattern: 'cypress/integration/*/*.js'
+    setupNodeEvents,
     specPattern: 'cypress/integration/BDD/*.feature'
   },
 });
