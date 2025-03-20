@@ -2,7 +2,7 @@
 
 describe('My Second Test Suite', () => {
     it('Search and Buy a Product', () => {
-      cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/")
+      cy.visit(Cypress.env('url') + "/seleniumPractise/#/")
       cy.get('.search-keyword').type('ca')
       cy.wait(2000)
       cy.get('.products').as('productsLocator')

@@ -2,7 +2,7 @@
 
 describe('Verify Mouse Hover', () => {
     it('Verify mouse hover', () => {
-        cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+        cy.visit(Cypress.env('url') + "/AutomationPractice/")
 
         cy.get('div.mouse-hover-content').invoke('show')
         cy.contains('Top').click()

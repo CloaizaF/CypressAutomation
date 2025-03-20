@@ -3,7 +3,7 @@
 describe('Verify elements in webpage', () => {
     it('Verify checkbox', () => {
 
-      cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+      cy.visit(Cypress.env('url') + "/AutomationPractice/")
 
       cy.get('#checkBoxOption1').check().should('be.checked').and('have.value', 'option1')
       cy.get('#checkBoxOption1').uncheck().should('not.be.checked')
@@ -13,7 +13,7 @@ describe('Verify elements in webpage', () => {
 
     it('Verify static dropdown', () => {
 
-      cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+      cy.visit(Cypress.env('url') + "/AutomationPractice/")
 
       cy.get('select').select('option2').should('have.value', 'option2')
       
@@ -21,7 +21,7 @@ describe('Verify elements in webpage', () => {
 
     it('Verify dynamic dropdown', () => {
 
-      cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+      cy.visit(Cypress.env('url') + "/AutomationPractice/")
 
       cy.get('#autocomplete').type('ind')
       cy.get('.ui-menu-item div').each(($el) => {
@@ -35,7 +35,7 @@ describe('Verify elements in webpage', () => {
 
     it('Verify elements visbility and invisibility', () => {
 
-      cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+      cy.visit(Cypress.env('url') + "/AutomationPractice/")
 
       cy.get('#displayed-text').should('be.visible')
       cy.get('#hide-textbox').click()
@@ -47,7 +47,7 @@ describe('Verify elements in webpage', () => {
 
     it('Verify radio button', () => {
 
-      cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+      cy.visit(Cypress.env('url') + "/AutomationPractice/")
 
       cy.get('input[value="radio2"]').check().should('be.checked')
       

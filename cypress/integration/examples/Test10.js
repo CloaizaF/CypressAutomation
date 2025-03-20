@@ -8,7 +8,7 @@ describe('Handling Calendars', () => {
         const monthNumber = "6"
         const year = "2027"
         const expectedValues = [monthNumber, day, year]
-        cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/offers")
+        cy.visit(Cypress.env('url') + "/seleniumPractise/#/offers")
 
         cy.get('.react-date-picker__inputGroup').click()
         cy.get('.react-calendar__navigation__label__labelText').click()

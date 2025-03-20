@@ -2,7 +2,7 @@
 
 describe('Verify Table', () => {
     it('Verify course has price', () => {
-        cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+        cy.visit(Cypress.env('url') + "/AutomationPractice/")
 
         cy.get('tr td:nth-child(2)').each(($el, $index) => {
             const courseText = $el.text() 

@@ -16,7 +16,7 @@ describe('E2E Ecommerce Test', () => {
 
     it('Sumbit Order', () => {
         Cypress.config('defaultCommandTimeout', 15000)
-        homePage.goTo("https://rahulshettyacademy.com/loginpagePractise/#")
+        homePage.goTo(Cypress.env('url') + "/loginpagePractise/#")
 
         // cy.log(testData.username) -> To log data in console
         // Login to the page

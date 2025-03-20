@@ -3,7 +3,7 @@
 describe('Verify different alerts in cypress', () => {
     it('Verify autoaccepted alerts', () => {
 
-      cy.visit("https://rahulshettyacademy.com/AutomationPractice/")
+      cy.visit(Cypress.env('url') + "/AutomationPractice/")
 
       cy.get('#alertbtn').click()
       cy.get('input[value="Confirm"]').click()
