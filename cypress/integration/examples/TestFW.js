@@ -18,11 +18,13 @@ describe('E2E Ecommerce Test', () => {
         Cypress.config('defaultCommandTimeout', 15000)
         homePage.goTo("https://rahulshettyacademy.com/loginpagePractise/#")
 
+        // cy.log(testData.username) -> To log data in console
         // Login to the page
         const productPage = homePage.login(testData.username, testData.password)
 
         // Assert the page is loaded correctly
         productPage.getPageLogo().should('be.visible')
+        // cy.pause() -> To debug
         productPage.getCardCount().should('have.length', 4)
 
         // Add products to the cart

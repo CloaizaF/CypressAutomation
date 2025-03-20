@@ -1,10 +1,11 @@
 class ConfirmationPage {
 
     submitFormDetails(){
-        cy.get('#country').type('India')
-        cy.wait(3000)
-        cy.get('.suggestions ul li a').click()
-        cy.get('.btn-success').click()
+        cy.submitFormDetails()
+        //cy.get('#country').type('India')
+        //cy.wait(3000)
+        //cy.get('.suggestions ul li a').click()
+        //cy.get('.btn-success').click()
     }
 
     getAlertMessage(){
