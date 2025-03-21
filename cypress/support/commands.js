@@ -31,9 +31,9 @@ Cypress.Commands.add('submitFormDetails', () => {
 })
 Cypress.Commands.add("LoginAPI", () => {
     cy.request('POST', 'https://rahulshettyacademy.com/api/ecom/auth/login',
-        { "userEmail": "rahulshetty@gmail.com", "userPassword": "Iamking@00" }
+        { "userEmail": "loaizafcamilo@gmail.com", "userPassword": "testing11%" }
     ).then((response) => {
-        expect(response.statusCode).to.equal(200)
+        expect(response.status).to.equal(200)
         Cypress.env('token', response.body.token)
     })
 })

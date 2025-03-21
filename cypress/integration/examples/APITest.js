@@ -7,8 +7,8 @@ describe('Verify API Test', () => {
         cy.request('POST', 'http://216.10.245.166/Library/Addbook.php',
             {
                 "name": "Lovely Life Of The Dark One",
-                "isbn": "DKJK",
-                "aisle": "23013",
+                "isbn": "DKJwK",
+                "aisle": "23013w",
                 "author": "The Dark King"
             }
         ).then((response) => {
