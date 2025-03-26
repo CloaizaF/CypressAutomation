@@ -1,20 +1,34 @@
-// const browserify = require("@cypress/browserify-preprocessor");
-// const { addCucumberPreprocessorPlugin } = require("@badeball/cypress-cucumber-preprocessor");
-// const { preprendTransformerToOptions } = require("@badeball/cypress-cucumber-preprocessor/browserify");
+const browserify = require("@cypress/browserify-preprocessor");
+const { addCucumberPreprocessorPlugin } = require("@badeball/cypress-cucumber-preprocessor");
+const { preprendTransformerToOptions } = require("@badeball/cypress-cucumber-preprocessor/browserify");
 const { defineConfig } = require("cypress");
+const sqlServer = require('cypress-sql-server');
 
+async function setupNodeEvents(on, config) {
 
-// async function setupNodeEvents(on, config){
-  
-//   await addCucumberPreprocessorPlugin(on, config);
+  await addCucumberPreprocessorPlugin(on, config);
 
-//   on(
-//     "file:preprocessor",
-//     browserify(preprendTransformerToOptions(config, browserify.defaultOptions)),
-//   );
+  on(
+    "file:preprocessor",
+    browserify(preprendTransformerToOptions(config, browserify.defaultOptions)),
+  );
 
-//   return config;
-// }
+  config.db = {
+    userName: "cloaiza",
+    password: "cypressdb11$",
+    server: "cypressdbdemo.database.windows.net",
+    options: {
+      database: "cypressautomation",
+      encrypt: true,
+      rowCollectionOnRequestCompletion: true
+    }
+  }
+
+  tasks = sqlServer.loadDBPlugin(config.db);
+  on('task', tasks);
+
+  return config;
+}
 
 module.exports = defineConfig({
 
@@ -25,18 +39,18 @@ module.exports = defineConfig({
   env: {
     url: "https://rahulshettyacademy.com"
   },
-  
+
   retries: {
     runMode: 1,
     openMode: 1,
   },
 
   e2e: {
-    setupNodeEvents(on, config) {
-      require('cypress-mochawesome-reporter/plugin')(on); //-> reporter for js files not cucumber
-    },
-    specPattern: 'cypress/integration/*/*.js'
-    // setupNodeEvents,
-    // specPattern: 'cypress/integration/BDD/*.feature'
+    // setupNodeEvents(on, config) {
+    //   require('cypress-mochawesome-reporter/plugin')(on); //-> reporter for js files not cucumber
+    // },
+    specPattern: 'cypress/integration/*/*.js',
+    setupNodeEvents,
+    //specPattern: 'cypress/integration/BDD/*.feature'
   },
 });
