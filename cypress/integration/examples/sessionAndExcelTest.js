@@ -39,5 +39,10 @@ describe('Verify JWT Session', () => {
             expect(productName).to.equal(result.data[1].B)
         })
 
+        // Verify content only
+        cy.readFile(filePath).then((text) => {
+            expect(text).to.include(productName)
+        })
+
     })
 })
