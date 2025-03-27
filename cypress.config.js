@@ -40,12 +40,12 @@ async function setupNodeEvents(on, config) {
   })
 
   on('task', {
-    async writeExcel({ searchText, replaceText, filePath, sheetName }) {
+    async writeExcel({ searchText, replaceText, change, filePath, sheetName }) {
       const workbook = new excelJs.Workbook();
       await workbook.xlsx.readFile(filePath)
       const worksheet = workbook.getWorksheet(sheetName);
       const coordinates = await getTextCoordinates(worksheet, searchText);
-      const cell = worksheet.getCell(coordinates.row, coordinates.column);
+      const cell = worksheet.getCell(coordinates.row + change.row, coordinates.column + change.col);
       cell.value = replaceText;
       return workbook.xlsx.writeFile(filePath).then(() => { return true; }).catch((error) => { return false; })
     }
