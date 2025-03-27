@@ -5,6 +5,7 @@ const { defineConfig } = require("cypress");
 const sqlServer = require('cypress-sql-server');
 const excelToJson = require('convert-excel-to-json');
 const fs = require('fs');
+const excelJs = require('exceljs');
 
 async function setupNodeEvents(on, config) {
 
@@ -38,7 +39,32 @@ async function setupNodeEvents(on, config) {
     }
   })
 
+  on('task', {
+    async writeExcel({ searchText, replaceText, filePath, sheetName }) {
+      const workbook = new excelJs.Workbook();
+      await workbook.xlsx.readFile(filePath)
+      const worksheet = workbook.getWorksheet(sheetName);
+      const coordinates = await getTextCoordinates(worksheet, searchText);
+      const cell = worksheet.getCell(coordinates.row, coordinates.column);
+      cell.value = replaceText;
+      return workbook.xlsx.writeFile(filePath).then(() => { return true; }).catch((error) => { return false; })
+    }
+  })
+
   return config;
+}
+
+async function getTextCoordinates(worksheet, searchText) {
+  let output = { row: -1, column: -1 };
+  worksheet.eachRow(($row, $rowNumber) => {
+    $row.eachCell(($cell, $colNumber) => {
+      if ($cell.value === searchText) {
+        output.row = $rowNumber;
+        output.column = $colNumber;
+      }
+    })
+  });
+  return output;
 }
 
 module.exports = defineConfig({
