@@ -88,6 +88,7 @@ module.exports = defineConfig({
     // },
     specPattern: 'cypress/integration/*/*.js',
     setupNodeEvents,
+    experimentalStudio: true
     //specPattern: 'cypress/integration/BDD/*.feature'
   },
 });
